@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Users>
+    <User>
+        <id>1</id>
+        <firstName>Ramesh</firstName>
+        <lastName>Fadatare</lastName>
+        <password>1234</password>
+    </User>
+    <User>
+        <id>2</id>
+        <firstName>John</firstName>
+        <lastName>Cena</lastName>
+        <password>12345</password>
+    </User>
+    <User>
+        <id>3</id>
+        <firstName>Tom</firstName>
+        <lastName>Cruise</lastName>
+        <password>12345@#</password>
+    </User>
+</Users>
