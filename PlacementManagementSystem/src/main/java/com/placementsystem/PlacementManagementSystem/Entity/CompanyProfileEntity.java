@@ -16,37 +16,44 @@ public class CompanyProfileEntity {
 	String technicalRequirement;
 	int experience;
 	int packageOffered;
-	
-	public String getCompany_name() {
-		return companyName;
-	}
-	public void setCompany_name(String companyName) {
-		this.companyName = companyName;
-	}
+
 	public int getId() {
 		return id;
 	}
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getTechnical_requirement() {
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
+	}
+
+	public String getTechnicalRequirement() {
 		return technicalRequirement;
 	}
-	public void setTechnical_requirement(String technical_requirement) {
-		this.technicalRequirement = technical_requirement;
+
+	public void setTechnicalRequirement(String technicalRequirement) {
+		this.technicalRequirement = technicalRequirement;
 	}
+
 	public int getExperience() {
 		return experience;
 	}
+
 	public void setExperience(int experience) {
 		this.experience = experience;
 	}
-	public int getPackage_offered() {
+
+	public int getPackageOffered() {
 		return packageOffered;
 	}
-	public void setPackage_offered(int packageOffered) {
+
+	public void setPackageOffered(int packageOffered) {
 		this.packageOffered = packageOffered;
 	}
-	
-
 }

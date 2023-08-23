@@ -31,20 +31,20 @@ public class CompanyService {
 		if(repository.existsById(id))
 		{
 		CompanyProfileEntity e1 = repository.findById(id).orElseThrow(()-> new MyException(String.format("Company Profile for id %s not found",id)));
-		if(entity.getCompany_name()!="")
-			e1.setCompany_name(entity.getCompany_name());
+		if(entity.getCompanyName()!="")
+			e1.setCompanyName(entity.getCompanyName());
 	
 		
 		if(entity.getExperience()!=0)
 			e1.setExperience(entity.getExperience());
 		
 		
-		if(entity.getTechnical_requirement()!="")
-			e1.setTechnical_requirement(entity.getTechnical_requirement());
+		if(entity.getTechnicalRequirement()!="")
+			e1.setTechnicalRequirement(entity.getTechnicalRequirement());
 
 		
-		if(entity.getPackage_offered()!=0)
-			e1.setPackage_offered(entity.getPackage_offered());
+		if(entity.getPackageOffered()!=0)
+			e1.setPackageOffered(entity.getPackageOffered());
 		
 		repository.save(e1);
 		}

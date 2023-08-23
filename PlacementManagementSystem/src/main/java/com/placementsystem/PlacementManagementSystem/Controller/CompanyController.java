@@ -26,9 +26,10 @@ public class CompanyController {
 	}
 	
 	@PutMapping("/modifyCompanyProfile/{id}")
-	public void modifyCompanyProfile(@PathVariable int id, @RequestBody CompanyProfileEntity entity)
+	public CompanyProfileEntity modifyCompanyProfile(@PathVariable int id, @RequestBody CompanyProfileEntity entity)
 	{
 		service.modifyCompanyProfile(id, entity);
+		return entity;
 	}
 	
 	@DeleteMapping("/deleteCompanyProfile/{id}")
