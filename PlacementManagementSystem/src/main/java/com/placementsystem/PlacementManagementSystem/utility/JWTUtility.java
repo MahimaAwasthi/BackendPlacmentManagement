@@ -50,7 +50,14 @@ public class JWTUtility implements Serializable {
     //check if the token has expired
     private Boolean isTokenExpired(String token) {
         final Date expiration = getExpirationDateFromToken(token);
-        return expiration.before(new Date());
+                Date stamp = new Timestamp(System.currentTimeMillis());
+        if(stamp.compareTo(expiration) > 0) {
+            return true;
+        }
+        else if (stamp.compareTo(expiration) == 0) {
+            return true;
+        }
+            return false;
     }
 
 
