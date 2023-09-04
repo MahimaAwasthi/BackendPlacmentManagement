@@ -44,9 +44,15 @@ public class CompanyController {
 		return service.showCompanyProfile(id);
 	}
 
-	@GetMapping("/showAllCompanies")
-	public List<CompanyProfileEntity> getAllCompanyProfileEntity() {
-		return service.getAllCompanyProfileEntity();
+	@GetMapping("/showAllCompanies/{page}/{size}")
+	public FetchAllResponse getAllCompanyProfileEntity(@PathVariable int page, @PathVariable int size ) {
+		if(Objects.isNull(page)) {
+			page = 0;
+		}
+		if(Objects.isNull(size)){
+			size = 10;
+		}
+		return service.getAllCompanyProfileEntity(page,size);
 	}
 	@ExceptionHandler(MyException.class)
 	public MyException handleException(MyException ex)
