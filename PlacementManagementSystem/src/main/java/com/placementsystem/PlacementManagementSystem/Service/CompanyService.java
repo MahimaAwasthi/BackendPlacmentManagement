@@ -2,6 +2,7 @@ package com.placementsystem.PlacementManagementSystem.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
 
 import com.placementsystem.PlacementManagementSystem.Entity.CompanyProfileEntity;
 import com.placementsystem.PlacementManagementSystem.Exception.MyException;
@@ -23,8 +24,12 @@ public class CompanyService {
 		repository.save(entity);
 	}
 
-	public List<CompanyProfileEntity> getAllCompanyProfileEntity() {
-		return repository.findAll();
+	public FetchAllResponse getAllCompanyProfileEntity(int page, int size) {
+		FetchAllResponse fetchAllResponse = new FetchAllResponse();
+		Page<CompanyProfileEntity> companyProfileEntity = repository.findAll(PageRequest.of(page,size));
+		fetchAllResponse.setCompanyProfileEntityList(companyProfileEntity.toList());
+		fetchAllResponse.setTotalPages(companyProfileEntity.getTotalPages());
+		return fetchAllResponse;
 	}
 	public void modifyCompanyProfile(int id, CompanyProfileEntity entity)
 	{
