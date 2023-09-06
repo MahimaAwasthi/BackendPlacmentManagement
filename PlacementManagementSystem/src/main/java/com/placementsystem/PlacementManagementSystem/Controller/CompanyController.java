@@ -8,6 +8,7 @@ import com.placementsystem.PlacementManagementSystem.Entity.CompanyProfileEntity
 import com.placementsystem.PlacementManagementSystem.Exception.MyException;
 import com.placementsystem.PlacementManagementSystem.Service.CompanyService;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -24,7 +25,10 @@ public class CompanyController {
 		service.addCompanyProfile(entity);
 		return entity;
 	}
-	
+	@PostMapping("/downloadExcel")
+	public ResponseEntity<byte[]> downloadExcel() throws IOException {
+		return ResponseEntity.ok(service.downloadExcel());
+	}
 	@PutMapping("/modifyCompanyProfile/{id}")
 	public CompanyProfileEntity modifyCompanyProfile(@PathVariable int id, @RequestBody CompanyProfileEntity entity)
 	{
