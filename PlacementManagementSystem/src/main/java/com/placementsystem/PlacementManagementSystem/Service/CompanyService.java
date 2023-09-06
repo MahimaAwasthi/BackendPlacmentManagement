@@ -4,6 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
 import com.placementsystem.PlacementManagementSystem.Entity.CompanyProfileEntity;
 import com.placementsystem.PlacementManagementSystem.Exception.MyException;
 import com.placementsystem.PlacementManagementSystem.Repository.CompanyRepository;
@@ -57,7 +63,31 @@ public class CompanyService {
 			throw new MyException(String.format("Company Profile for id %s not found",id));
 		
 	}
-	
+	public byte[] downloadExcel() throws IOException {
+		Workbook workbook = new XSSFWorkbook();
+		Sheet sheet = workbook.createSheet("Sample Excel");
+		List<CompanyProfileEntity> companyProfileEntity = repository.findAll();
+		Row headerRow = sheet.createRow(0);
+		Cell headerCell1 = headerRow.createCell(0);
+		headerCell1.setCellValue("id");
+		Cell headerCell2 = headerRow.createCell(1);
+		headerCell2.setCellValue("companyName");
+		Cell headerCell3 = headerRow.createCell(2);
+		headerCell3.setCellValue("technicalRequirement");
+		Cell headerCell4 = headerRow.createCell(3);
+		headerCell4.setCellValue("experience");
+		Cell headerCell5 = headerRow.createCell(4);
+		headerCell5.setCellValue("packageOffered");
+		int rowNum = 1;
+		for (CompanyProfileEntity rowData : companyProfileEntity) {
+			Row row = sheet.createRow(rowNum++);
+			row.createCell(0).setCellValue(rowData.getId());
+			row.createCell(1).setCellValue(rowData.getCompanyName());
+			row.createCell(2).setCellValue(rowData.getTechnicalRequirement());
+			row.createCell(3).setCellValue(rowData.getExperience());
+			row.createCell(4).setCellValue(rowData.getPackageOffered());
+		}
+	}
 	public void deleteCompanyProfile(int id)
 	{
 		if(repository.existsById(id))
